@@ -1,0 +1,40 @@
+/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataloader.py:561: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py", line 96, in main
+    workspace.train()
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py", line 55, in train
+    train_loss, loss_dict = learner.train_epoch(train_loader)
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/learner/BYOLLearner.py", line 40, in train_epoch
+    for batch in train_loader:
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataset.py", line 298, in __getitem__
+    return self.dataset[self.indices[idx]]
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/datasets/dataset.py", line 141, in __getitem__
+    vision_image = self._get_image(index)
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/datasets/dataset.py", line 113, in _get_image
+    img = self.vision_transform(img)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 95, in __call__
+    img = t(img)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 137, in __call__
+    return F.to_tensor(pic)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/functional.py", line 140, in to_tensor
+    raise TypeError(f"pic should be PIL Image or ndarray. Got {type(pic)}")
+TypeError: pic should be PIL Image or ndarray. Got <class 'torch.Tensor'>
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

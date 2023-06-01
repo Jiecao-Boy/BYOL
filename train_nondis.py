@@ -24,7 +24,7 @@ class Workspace:
         self.hydra_dir = HydraConfig.get().run.dir
 
         # Create the checkpoint directory - it will be inside the hydra directory
-        cfg.checkpoint_dir = os.path.join(self.hydra_dir, 'models')
+        cfg.checkpoint_dir = os.path.join(self.hydra_dir, 'saved_models')
         os.makedirs(cfg.checkpoint_dir, exist_ok=True) # Doesn't give an error if dir exists when exist_ok is set to True 
         
         # Set device and config
@@ -35,6 +35,7 @@ class Workspace:
 
         # It looks at the datatype type and returns the train and test loader accordingly
         train_loader, test_loader, _ = get_dataloaders(self.cfg)
+        print("--------------------------------------------------finish loading!!!")
 
         # Initialize the learner - looks at the type of the agent to be initialized first
         learner = init_learner(self.cfg, device)
@@ -52,7 +53,8 @@ class Workspace:
         for epoch in range(self.cfg.train_epochs):
 
             # Train the models for one epoch
-            train_loss, loss_dict = learner.train_epoch(train_loader)
+            # train_loss, loss_dict = learner.train_epoch(train_loader)
+            train_loss = learner.train_epoch(train_loader)
 
             pbar.set_description(f'Epoch {epoch}, Train loss: {train_loss:.5f}, Best loss: {best_loss:.5f}')
             pbar.update(1) # Update for each batch
@@ -61,7 +63,7 @@ class Workspace:
             if self.cfg.logger and epoch % self.cfg.log_frequency == 0:
                 self.logger.log({'epoch': epoch,
                                  'train loss': train_loss})
-                self.logger.log({"train/{}".format(x): y for (x, y) in loss_dict.items()})
+                # self.logger.log({"train/{}".format(x): y for (x, y) in loss_dict.items()})
 
             # Testing and saving the model
             if epoch % self.cfg.save_frequency == 0: # NOTE: Not sure why this is a problem but this could be the fix

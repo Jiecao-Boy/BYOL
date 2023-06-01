@@ -67,7 +67,7 @@ def init_bc(cfg, device, rank):
 def init_image_byol(cfg, device, rank):
     encoder = hydra.utils.instantiate(cfg.encoder).to(device)
 
-    augment_fn = get_vision_augmentation(
+    augment_fn = get_vision_augmentations(
         img_means = VISION_IMAGE_MEANS,
         img_stds = VISION_IMAGE_STDS,
     )
@@ -80,7 +80,7 @@ def init_image_byol(cfg, device, rank):
     ).to(device)
 
     #encoder is only set to be distributed here to avoid BYOL to set any torch on differenty GPUs
-    encoder = DDP(encoder, device_ids=[rank], output_device=rank, broadcast_buffers=False)
+    # encoder = DDP(encoder, device_ids=[rank], output_device=rank, broadcast_buffers=False)
     
     # Initialize the optimizer 
     optimizer = hydra.utils.instantiate(cfg.optimizer,

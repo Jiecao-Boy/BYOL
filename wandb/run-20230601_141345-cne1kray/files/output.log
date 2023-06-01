@@ -1,0 +1,46 @@
+/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/utils/data/dataloader.py:561: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Traceback (most recent call last):
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py", line 99, in <module>
+    main()
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py", line 96, in main
+    workspace.train()
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py", line 55, in train
+    train_loss, loss_dict = learner.train_epoch(train_loader)
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/learner/BYOLLearner.py", line 45, in train_epoch
+    loss = self.byol(image)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/yd2032/Desktop/byol_implementation/BYOL/model/byol.py", line 254, in forward
+    image_one, image_two = self.augment1(x), self.augment2(x)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 95, in __call__
+    img = t(img)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 547, in forward
+    img = t(img)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 1819, in forward
+    return F.gaussian_blur(img, self.kernel_size, [sigma, sigma])
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/functional.py", line 1386, in gaussian_blur
+    output = F_t.gaussian_blur(t_img, kernel_size, sigma)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/_functional_tensor.py", line 753, in gaussian_blur
+    kernel = _get_gaussian_kernel2d(kernel_size, sigma, dtype=dtype, device=img.device)
+  File "/ext3/miniconda3/envs/tactile_dexterity/lib/python3.9/site-packages/torchvision/transforms/_functional_tensor.py", line 740, in _get_gaussian_kernel2d
+    kernel1d_x = _get_gaussian_kernel1d(kernel_size[0], sigma[0]).to(device, dtype=dtype)
+KeyboardInterrupt

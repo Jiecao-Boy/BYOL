@@ -49,5 +49,4 @@ class BYOLLearner(Learner):
             loss.backward() 
             self.optimizer.step()
             self.byol.update_moving_average() 
-
         return train_loss / len(train_loader)

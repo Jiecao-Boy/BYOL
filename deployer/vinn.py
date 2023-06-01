@@ -15,7 +15,7 @@ from holobot.constants import *
 from holobot.utils.network import ZMQCameraSubscriber
 from holobot.robot.allegro.allegro_kdl import AllegroKDL
 
-from models import load_model, resnet18, alexnet, ScaledKNearestNeighbors 
+from model import load_model, resnet18, alexnet, ScaledKNearestNeighbors 
 # from tactile_data import *
 from utils import *
 
@@ -61,7 +61,7 @@ class VINN(Deployer):
         #     representation_type = tactile_repr_type
         # )
 
-        self.image_cfg, self.image_encoder, self.image_transform = self._init_encoder_info(device, image_out_dir, 'image')
+        self.image_cfg, self.image_encoder, self.image_transform = self._init_encoder_info(device, image_out_dir)
         self.inv_image_transform = get_inverse_image_norm()
 
         self.roots = sorted(glob.glob(f'{data_path}/demonstration_*'))
@@ -94,31 +94,43 @@ class VINN(Deployer):
         )
 
     
-    def _init_encoder_info(self, device, out_dir, encoder_type='tactile'): # encoder_type: either image or tactile
-        if encoder_type == 'tactile' and  out_dir is None:
-            encoder = alexnet(pretrained=True, out_dim=512, remove_last_layer=True)
-            cfg = OmegaConf.create({'encoder':{'out_dim':512}, 'tactile_image_size':224})
+    # def _init_encoder_info(self, device, out_dir, encoder_type='tactile'): # encoder_type: either image or tactile
+    def init_encoder_info(self, device, out_dir):
+        # if encoder_type == 'tactile' and  out_dir is None:
+        #     encoder = alexnet(pretrained=True, out_dim=512, remove_last_layer=True)
+        #     cfg = OmegaConf.create({'encoder':{'out_dim':512}, 'tactile_image_size':224})
         
-        elif encoder_type =='image' and out_dir is None: # Load the pretrained encoder 
-            encoder = resnet18(pretrain=True, out_dim=512) # These values are set
-            cfg = OmegaConf.create({"encoder":{"out_dim":512}})
+        # elif encoder_type =='image' and out_dir is None: # Load the pretrained encoder 
+        #     encoder = resnet18(pretrain=True, out_dim=512) # These values are set
+        #     cfg = OmegaConf.create({"encoder":{"out_dim":512}})
         
-        else:
-            cfg = OmegaConf.load(os.path.join(out_dir, '.hydra/config.yaml'))
-            model_path = os.path.join(out_dir, 'models/byol_encoder_best.pt')
-            encoder = load_model(cfg, device, model_path)
+        # else:
+        #     cfg = OmegaConf.load(os.path.join(out_dir, '.hydra/config.yaml'))
+        #     model_path = os.path.join(out_dir, 'models/byol_encoder_best.pt')
+        #     encoder = load_model(cfg, device, model_path)
+
+        cfg = OmegaConf.load(os.path.join(out_dir, '.hydra/config.yaml'))
+        model_path = os.path.join(out_dir, 'models/byol_encoder_best.pt')
+        encoder = load_model(cfg, device, model_path)
         encoder.eval() 
         
-        if encoder_type == 'image':
-            transform = T.Compose([
-                T.Resize((480,640)),
-                T.Lambda(crop_transform),
-                T.Resize(480),
-                T.ToTensor(),
-                T.Normalize(VISION_IMAGE_MEANS, VISION_IMAGE_STDS),
-            ]) 
-        else:
-            transform = None # This is separately set for tactile
+        # if encoder_type == 'image':
+        #     transform = T.Compose([
+        #         T.Resize((480,640)),
+        #         T.Lambda(crop_transform),
+        #         T.Resize(480),
+        #         T.ToTensor(),
+        #         T.Normalize(VISION_IMAGE_MEANS, VISION_IMAGE_STDS),
+        #     ]) 
+        # else:
+        #     transform = None # This is separately set for tactile
+        transform = T.Compose([
+            T.Resize((480,680)),
+            T.Lambda(crop_transform),
+            T.Resize(480),
+            T.ToTensor(),
+            T.Normalize(VISION_IMAGE_MEANS, VISION_IMAGE_STDS)
+        ])
 
         return cfg, encoder, transform
     

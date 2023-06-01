@@ -16,11 +16,11 @@ batch_size: 32
 # vision_image_size: 480
 vision_image_size: 224
 train_epochs: 500
-save_frequency: 10
+save_frequency: 1
 train_dset_split: 0.95
 
 distributed: false
-num_workers: 4
+num_workers: 2
 world_size: 1
 num_gpus: 4
 
@@ -29,7 +29,7 @@ object: cube_flipping
 experiment: ${learner_type}_bs_${batch_size}_epochs_${train_epochs}_lr_${optimizer.lr}_${object} # Name of the experiment that the models are saved
 # data_dir: /home/irmak/Workspace/Holo-Bot/extracted_data/${object}/after_rss
 # data_dir: /home/jiecao-boy/Desktop/MetaWorld/
-data_dir: /home/yinlongdai/Desktop/holobot_data/cube_flipping
+data_dir: /scratch/yd2032/Desktop/holobot_data/cube_flipping
 
 
 # data_dir: /data/tactile_dexterity/play_data
@@ -43,4 +43,4 @@ log_frequency: 1
 hydra:
     run:
         # dir: /home/Desktop/MetaWorld/${now:%Y.%m.%d}/${now:%H-%M}_${experiment}
-        dir: /home/yinlongdai/Desktop/byol_implementation/${now:%Y.%m.%d}/${now:%H-%M}_${experiment}
+        dir: /scratch/yd2032/Desktop/byol_implementation/${now:%Y.%m.%d}/${now:%H-%M}_${experiment}

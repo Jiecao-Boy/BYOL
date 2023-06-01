@@ -34,6 +34,8 @@ def get_framebased_shuffled_dataloader(cfg):
 
     train_dset_size = int(len(dataset) * cfg.train_dset_split)
     test_dset_size = len(dataset) - train_dset_size
+    print ('-----------------------------------------train_data_size={}'.format(train_dset_size))
+    print ('-----------------------------------------test_data_size={}'.format(test_dset_size))
 
     # Random split the train and validation datasets
     train_dset, test_dset = data.random_split(dataset, 

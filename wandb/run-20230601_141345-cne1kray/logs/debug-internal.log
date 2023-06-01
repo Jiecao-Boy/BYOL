@@ -1,0 +1,277 @@
+2023-06-01 14:13:45,707 INFO    StreamThr :2558949 [internal.py:wandb_internal():86] W&B internal server running at pid: 2558949, started at: 2023-06-01 14:13:45.706933
+2023-06-01 14:13:45,709 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status
+2023-06-01 14:13:45,720 INFO    WriterThread:2558949 [datastore.py:open_for_write():85] open: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/run-cne1kray.wandb
+2023-06-01 14:13:45,721 DEBUG   SenderThread:2558949 [sender.py:send():375] send: header
+2023-06-01 14:13:45,736 DEBUG   SenderThread:2558949 [sender.py:send():375] send: run
+2023-06-01 14:13:45,921 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: check_version
+2023-06-01 14:13:45,925 INFO    SenderThread:2558949 [dir_watcher.py:__init__():219] watching files in: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files
+2023-06-01 14:13:45,925 INFO    SenderThread:2558949 [sender.py:_start_run_threads():1124] run started: cne1kray with start time 1685643225.703884
+2023-06-01 14:13:45,926 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: summary_record
+2023-06-01 14:13:45,926 INFO    SenderThread:2558949 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-01 14:13:45,926 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: check_version
+2023-06-01 14:13:46,003 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: run_start
+2023-06-01 14:13:46,010 DEBUG   HandlerThread:2558949 [system_info.py:__init__():31] System info init
+2023-06-01 14:13:46,010 DEBUG   HandlerThread:2558949 [system_info.py:__init__():46] System info init done
+2023-06-01 14:13:46,010 INFO    HandlerThread:2558949 [system_monitor.py:start():181] Starting system monitor
+2023-06-01 14:13:46,010 INFO    SystemMonitor:2558949 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-06-01 14:13:46,010 INFO    HandlerThread:2558949 [system_monitor.py:probe():201] Collecting system info
+2023-06-01 14:13:46,010 INFO    SystemMonitor:2558949 [interfaces.py:start():190] Started cpu monitoring
+2023-06-01 14:13:46,011 INFO    SystemMonitor:2558949 [interfaces.py:start():190] Started disk monitoring
+2023-06-01 14:13:46,011 INFO    SystemMonitor:2558949 [interfaces.py:start():190] Started gpu monitoring
+2023-06-01 14:13:46,012 INFO    SystemMonitor:2558949 [interfaces.py:start():190] Started memory monitoring
+2023-06-01 14:13:46,012 INFO    SystemMonitor:2558949 [interfaces.py:start():190] Started network monitoring
+2023-06-01 14:13:46,035 DEBUG   HandlerThread:2558949 [system_info.py:probe():195] Probing system
+2023-06-01 14:13:46,040 DEBUG   HandlerThread:2558949 [system_info.py:_probe_git():180] Probing git
+2023-06-01 14:13:46,052 DEBUG   HandlerThread:2558949 [system_info.py:_probe_git():188] Probing git done
+2023-06-01 14:13:46,052 DEBUG   HandlerThread:2558949 [system_info.py:probe():240] Probing system done
+2023-06-01 14:13:46,052 DEBUG   HandlerThread:2558949 [system_monitor.py:probe():210] {'os': 'Linux-4.18.0-372.26.1.el8_6.x86_64-x86_64-with-glibc2.27', 'python': '3.9.16', 'heartbeatAt': '2023-06-01T18:13:46.035128', 'startedAt': '2023-06-01T18:13:45.696808', 'docker': None, 'cuda': '10.1.243', 'args': (), 'state': 'running', 'program': '/scratch/yd2032/Desktop/byol_implementation/BYOL/train_nondis.py', 'codePath': 'train_nondis.py', 'git': {'remote': 'https://github.com/Jiecao-Boy/BYOL.git', 'commit': 'c2fda4f800193636d66142a0702d7c953c172033'}, 'email': 'yd2032@nyu.edu', 'root': '/scratch/yd2032/Desktop/byol_implementation/BYOL', 'host': 'gr045.hpc.nyu.edu', 'username': 'yd2032', 'executable': '/ext3/miniconda3/envs/tactile_dexterity/bin/python', 'cpu_count': 48, 'cpu_count_logical': 48, 'cpu_freq': {'current': 3858.3042499999997, 'min': 3900.0, 'max': 3900.0}, 'cpu_freq_per_core': [{'current': 3498.602, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3499.999, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3500.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3500.002, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}, {'current': 3900.0, 'min': 3900.0, 'max': 3900.0}], 'disk': {'total': 52.40525436401367, 'used': 14.9598388671875}, 'gpu': 'Quadro RTX 8000', 'gpu_count': 1, 'gpu_devices': [{'name': 'Quadro RTX 8000', 'memory_total': 48318382080}], 'memory': {'total': 377.0740737915039}}
+2023-06-01 14:13:46,056 INFO    HandlerThread:2558949 [system_monitor.py:probe():211] Finished collecting system info
+2023-06-01 14:13:46,056 INFO    HandlerThread:2558949 [system_monitor.py:probe():214] Publishing system info
+2023-06-01 14:13:46,056 DEBUG   HandlerThread:2558949 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-06-01 14:13:46,056 DEBUG   HandlerThread:2558949 [system_info.py:_save_pip():67] Saving pip packages done
+2023-06-01 14:13:46,056 DEBUG   HandlerThread:2558949 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-06-01 14:13:46,927 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_created():278] file/dir created: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/conda-environment.yaml
+2023-06-01 14:13:46,927 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_created():278] file/dir created: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/requirements.txt
+2023-06-01 14:13:46,927 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_created():278] file/dir created: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-summary.json
+2023-06-01 14:13:49,929 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_modified():295] file/dir modified: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/conda-environment.yaml
+2023-06-01 14:13:49,965 DEBUG   HandlerThread:2558949 [system_info.py:_save_conda():86] Saving conda packages done
+2023-06-01 14:13:49,966 INFO    HandlerThread:2558949 [system_monitor.py:probe():216] Finished publishing system info
+2023-06-01 14:13:49,971 DEBUG   SenderThread:2558949 [sender.py:send():375] send: files
+2023-06-01 14:13:49,971 INFO    SenderThread:2558949 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-06-01 14:13:49,975 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:13:49,975 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:13:50,045 DEBUG   SenderThread:2558949 [sender.py:send():375] send: telemetry
+2023-06-01 14:13:50,279 INFO    wandb-upload_0:2558949 [upload_job.py:push():137] Uploaded file /state/partition1/job-34118958/tmpxm_m4pr9wandb/xsao6ip5-wandb-metadata.json
+2023-06-01 14:13:50,929 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_created():278] file/dir created: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-metadata.json
+2023-06-01 14:13:50,929 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_created():278] file/dir created: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/output.log
+2023-06-01 14:13:51,046 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:13:52,930 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_modified():295] file/dir modified: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/output.log
+2023-06-01 14:13:56,071 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:01,102 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:04,975 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:14:04,976 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:14:07,038 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:12,051 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:17,064 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:17,951 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_modified():295] file/dir modified: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/config.yaml
+2023-06-01 14:14:20,255 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:14:20,255 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:14:22,415 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:27,418 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:32,419 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:35,377 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:14:35,378 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:14:37,532 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:42,533 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:46,013 DEBUG   SystemMonitor:2558949 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-06-01 14:14:46,015 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:14:48,016 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:50,459 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:14:50,471 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:14:53,531 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:14:58,533 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:03,537 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:05,481 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:15:05,486 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:15:08,564 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:13,564 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:16,027 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:15:19,027 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:20,482 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:15:20,482 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:15:24,528 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:29,528 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:34,530 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:35,483 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:15:35,483 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:15:39,539 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:44,541 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:46,034 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:15:50,035 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:15:50,484 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:15:50,484 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:15:55,565 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:00,566 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:05,538 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:16:05,539 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:16:05,608 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:10,610 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:15,612 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:16,044 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:16:20,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:16:20,574 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:16:20,632 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:25,633 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:30,635 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:35,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:16:35,574 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:16:35,653 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:40,655 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:45,660 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:46,044 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:16:50,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:16:50,575 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:16:51,632 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:16:56,635 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:01,636 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:05,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:17:05,574 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:17:06,643 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:11,646 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:16,045 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:17:17,046 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:20,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:17:20,575 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:17:22,620 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:27,622 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:32,624 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:35,574 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:17:35,575 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:17:37,675 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:42,676 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:46,047 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:17:48,047 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:50,575 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:17:50,575 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:17:53,674 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:17:58,683 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:18:03,711 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:18:05,575 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: stop_status
+2023-06-01 14:18:05,575 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: stop_status
+2023-06-01 14:18:09,621 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:18:14,627 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:18:14,710 DEBUG   SenderThread:2558949 [sender.py:send():375] send: exit
+2023-06-01 14:18:14,710 INFO    SenderThread:2558949 [sender.py:send_exit():598] handling exit code: 255
+2023-06-01 14:18:14,710 INFO    SenderThread:2558949 [sender.py:send_exit():600] handling runtime: 268
+2023-06-01 14:18:14,712 INFO    SenderThread:2558949 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-01 14:18:14,712 INFO    SenderThread:2558949 [sender.py:send_exit():606] send defer
+2023-06-01 14:18:14,712 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,712 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 0
+2023-06-01 14:18:14,712 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,712 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-06-01 14:18:14,712 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 1
+2023-06-01 14:18:14,713 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,713 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 1
+2023-06-01 14:18:14,713 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,713 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-06-01 14:18:14,713 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 2
+2023-06-01 14:18:14,713 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,713 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 2
+2023-06-01 14:18:14,713 INFO    HandlerThread:2558949 [system_monitor.py:finish():190] Stopping system monitor
+2023-06-01 14:18:14,713 DEBUG   SystemMonitor:2558949 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-06-01 14:18:14,714 DEBUG   SystemMonitor:2558949 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-06-01 14:18:14,713 INFO    HandlerThread:2558949 [interfaces.py:finish():202] Joined cpu monitor
+2023-06-01 14:18:14,714 INFO    HandlerThread:2558949 [interfaces.py:finish():202] Joined disk monitor
+2023-06-01 14:18:14,780 INFO    HandlerThread:2558949 [interfaces.py:finish():202] Joined gpu monitor
+2023-06-01 14:18:14,780 INFO    HandlerThread:2558949 [interfaces.py:finish():202] Joined memory monitor
+2023-06-01 14:18:14,781 INFO    HandlerThread:2558949 [interfaces.py:finish():202] Joined network monitor
+2023-06-01 14:18:14,781 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,781 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-06-01 14:18:14,781 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 3
+2023-06-01 14:18:14,781 DEBUG   SenderThread:2558949 [sender.py:send():375] send: stats
+2023-06-01 14:18:14,781 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,781 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 3
+2023-06-01 14:18:14,782 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,782 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-06-01 14:18:14,782 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 4
+2023-06-01 14:18:14,782 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,782 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 4
+2023-06-01 14:18:14,782 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,782 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-06-01 14:18:14,782 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 5
+2023-06-01 14:18:14,782 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,782 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 5
+2023-06-01 14:18:14,782 DEBUG   SenderThread:2558949 [sender.py:send():375] send: summary
+2023-06-01 14:18:14,783 INFO    SenderThread:2558949 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-06-01 14:18:14,783 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,783 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-06-01 14:18:14,783 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 6
+2023-06-01 14:18:14,783 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,783 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 6
+2023-06-01 14:18:14,783 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,783 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-06-01 14:18:14,783 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 7
+2023-06-01 14:18:14,783 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: status_report
+2023-06-01 14:18:14,783 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:14,784 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 7
+2023-06-01 14:18:14,784 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:14,784 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-06-01 14:18:15,222 INFO    Thread-12 :2558949 [dir_watcher.py:_on_file_modified():295] file/dir modified: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-summary.json
+2023-06-01 14:18:15,710 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-01 14:18:16,422 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 8
+2023-06-01 14:18:16,422 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: poll_exit
+2023-06-01 14:18:16,422 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:16,422 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 8
+2023-06-01 14:18:16,422 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:16,423 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-06-01 14:18:16,428 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 9
+2023-06-01 14:18:16,429 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:16,429 DEBUG   SenderThread:2558949 [sender.py:send():375] send: artifact
+2023-06-01 14:18:16,429 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 9
+2023-06-01 14:18:16,710 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-01 14:18:16,767 INFO    SenderThread:2558949 [sender.py:send_artifact():1474] sent artifact job-https___github.com_Jiecao-Boy_BYOL.git_train_nondis.py - {'id': 'QXJ0aWZhY3Q6NDc0MTQ2ODM0', 'digest': '493d8b2e573d8566ec56f6d4fe115f82', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_Jiecao-Boy_BYOL.git_train_nondis.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_Jiecao-Boy_BYOL.git_train_nondis.py', 'alias': 'v0'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjczNTMwNDk3', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDc0MTQ2ODM0', 'versionIndex': 0}}, 'version': 'v0'}
+2023-06-01 14:18:16,788 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:16,788 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-06-01 14:18:16,788 INFO    SenderThread:2558949 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-06-01 14:18:17,223 INFO    SenderThread:2558949 [dir_watcher.py:_on_file_modified():295] file/dir modified: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/output.log
+2023-06-01 14:18:17,223 INFO    SenderThread:2558949 [dir_watcher.py:finish():395] scan: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files
+2023-06-01 14:18:17,224 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/conda-environment.yaml conda-environment.yaml
+2023-06-01 14:18:17,224 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-metadata.json wandb-metadata.json
+2023-06-01 14:18:17,224 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/config.yaml config.yaml
+2023-06-01 14:18:17,226 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/requirements.txt requirements.txt
+2023-06-01 14:18:17,229 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-summary.json wandb-summary.json
+2023-06-01 14:18:17,231 INFO    SenderThread:2558949 [dir_watcher.py:finish():409] scan save: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/output.log output.log
+2023-06-01 14:18:17,232 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 10
+2023-06-01 14:18:17,232 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: poll_exit
+2023-06-01 14:18:17,232 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:17,232 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 10
+2023-06-01 14:18:17,234 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:17,236 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-06-01 14:18:17,236 INFO    SenderThread:2558949 [file_pusher.py:finish():167] shutting down file pusher
+2023-06-01 14:18:17,497 INFO    wandb-upload_1:2558949 [upload_job.py:push():137] Uploaded file /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/config.yaml
+2023-06-01 14:18:17,566 INFO    wandb-upload_0:2558949 [upload_job.py:push():137] Uploaded file /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/conda-environment.yaml
+2023-06-01 14:18:17,567 INFO    wandb-upload_4:2558949 [upload_job.py:push():137] Uploaded file /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/output.log
+2023-06-01 14:18:17,581 INFO    wandb-upload_3:2558949 [upload_job.py:push():137] Uploaded file /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/wandb-summary.json
+2023-06-01 14:18:17,606 INFO    wandb-upload_2:2558949 [upload_job.py:push():137] Uploaded file /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/files/requirements.txt
+2023-06-01 14:18:17,711 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-01 14:18:17,711 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: poll_exit
+2023-06-01 14:18:17,806 INFO    Thread-11 :2558949 [sender.py:transition_state():626] send defer: 11
+2023-06-01 14:18:17,806 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:17,806 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 11
+2023-06-01 14:18:17,806 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:17,806 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-06-01 14:18:17,806 INFO    SenderThread:2558949 [file_pusher.py:join():172] waiting for file pusher
+2023-06-01 14:18:17,806 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 12
+2023-06-01 14:18:17,807 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:17,807 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 12
+2023-06-01 14:18:17,807 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:17,807 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-06-01 14:18:18,113 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 13
+2023-06-01 14:18:18,114 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:18,114 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 13
+2023-06-01 14:18:18,114 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:18,114 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-06-01 14:18:18,114 INFO    SenderThread:2558949 [sender.py:transition_state():626] send defer: 14
+2023-06-01 14:18:18,114 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: defer
+2023-06-01 14:18:18,114 DEBUG   SenderThread:2558949 [sender.py:send():375] send: final
+2023-06-01 14:18:18,114 INFO    HandlerThread:2558949 [handler.py:handle_request_defer():170] handle defer: 14
+2023-06-01 14:18:18,114 DEBUG   SenderThread:2558949 [sender.py:send():375] send: footer
+2023-06-01 14:18:18,115 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: defer
+2023-06-01 14:18:18,115 INFO    SenderThread:2558949 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-06-01 14:18:18,115 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-01 14:18:18,115 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: poll_exit
+2023-06-01 14:18:18,115 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: poll_exit
+2023-06-01 14:18:18,116 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: poll_exit
+2023-06-01 14:18:18,116 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: server_info
+2023-06-01 14:18:18,116 DEBUG   SenderThread:2558949 [sender.py:send_request():402] send_request: server_info
+2023-06-01 14:18:18,118 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: get_summary
+2023-06-01 14:18:18,118 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: sampled_history
+2023-06-01 14:18:18,169 INFO    MainThread:2558949 [wandb_run.py:_footer_history_summary_info():3469] rendering history
+2023-06-01 14:18:18,169 INFO    MainThread:2558949 [wandb_run.py:_footer_history_summary_info():3501] rendering summary
+2023-06-01 14:18:18,169 INFO    MainThread:2558949 [wandb_run.py:_footer_sync_info():3428] logging synced files
+2023-06-01 14:18:18,169 DEBUG   HandlerThread:2558949 [handler.py:handle_request():144] handle_request: shutdown
+2023-06-01 14:18:18,169 INFO    HandlerThread:2558949 [handler.py:finish():842] shutting down handler
+2023-06-01 14:18:19,116 INFO    WriterThread:2558949 [datastore.py:close():298] close: /scratch/yd2032/Desktop/byol_implementation/BYOL/wandb/run-20230601_141345-cne1kray/run-cne1kray.wandb
+2023-06-01 14:18:19,169 INFO    SenderThread:2558949 [sender.py:finish():1550] shutting down sender
+2023-06-01 14:18:19,169 INFO    SenderThread:2558949 [file_pusher.py:finish():167] shutting down file pusher
+2023-06-01 14:18:19,169 INFO    SenderThread:2558949 [file_pusher.py:join():172] waiting for file pusher

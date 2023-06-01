@@ -96,18 +96,21 @@ class VisionActionDataset(data.Dataset):
         # image_root = self.roots[demo_id]
         # image_path = os.path.join(image_root, 'cam_{}_rgb_images/frame_{}.png'.format(self.vision_view_num, str(image_id).zfill(5)))
         ##Check which demo the index belongs to
+        # print("-------------------------------------------------------- demos: {}".format(self.data['length']))
+        # print("--------------------------------------------------previous index{}".format(index))
         for i in range(len(self.data['length'])):
             if index < self.data['length'][i][1]:
                 break
             else:
                 index -= self.data['length'][i][1]
+        # print("-------------------------------------------------current index{}".format(index))
         ##Get demo_id
         demo_id = self.data['length'][i][0]
         ## Get the image from the root
-        image_path = self.roots[demo_id] + '/cam_{}_rgb_images/frame_{}.png'.format(self.vision_view_num, str(index-1).zfill(5))
+        image_path = self.roots[demo_id] + '/cam_{}_rgb_images/frame_{}.png'.format(self.vision_view_num, str(index).zfill(5))
         # img = self.data['images'][index]
         img = self.vision_transform(loader(image_path))
-        img = self.vision_transform(img)
+        # img = self.vision_transform(img)
         return torch.FloatTensor(img)
 
     # def _get_tactile_image(self, tactile_values):
