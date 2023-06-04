@@ -14,25 +14,27 @@ from tqdm import tqdm
 from holobot.constants import *
 from holobot.utils.network import ZMQCameraSubscriber
 from holobot.robot.allegro.allegro_kdl import AllegroKDL
+from holobot.samplers.allegro import AllegroSampler 
 
-from model import load_model, resnet18, alexnet, ScaledKNearestNeighbors 
+# from model import load_model, resnet18, alexnet, ScaledKNearestNeighbors 
+from model import load_model, resnet18, ScaledKNearestNeighbors  
 # from tactile_data import *
 from utils import *
 
 from .deployer import Deployer
-from utils.nn_buffer import NearestNeighborBuffer
+from .nnbuffer import NearestNeighborBuffer
 
 class VINN(Deployer):
     def __init__(
         self,
         data_path,
         deployment_dump_dir,
-        tactile_out_dir=None, # If these are None then it's considered we'll use non trained encoders
+        # tactile_out_dir=None, # If these are None then it's considered we'll use non trained encoders
         image_out_dir=None,
         representation_types = ['image', 'tactile', 'kinova', 'allegro', 'torque'], # Torque could be used
         representation_importance = [1,1,1,1], 
-        tactile_repr_type = 'tdex', # raw, shared, stacked, tdex, sumpool, pca (uses the encoder passed)
-        tactile_shuffle_type = None,   
+        # tactile_repr_type = 'tdex', # raw, shared, stacked, tdex, sumpool, pca (uses the encoder passed)
+        # tactile_shuffle_type = None,   
         nn_buffer_size=100,
         nn_k=20,
         demos_to_use=[0],
@@ -66,9 +68,43 @@ class VINN(Deployer):
 
         self.roots = sorted(glob.glob(f'{data_path}/demonstration_*'))
         self.data_path = data_path
-        self.data = load_data(self.roots, demos_to_use=demos_to_use) # This will return all the desired indices and the values
+        # self.data = load_data(self.roots, demos_to_use=demos_to_use) # This will return all the desired indices and the values
 
-        self._get_all_representations()
+
+        # self._get_all_representations()
+        ## get self.all_representations but through the holo-bot allegro_sampler: 
+        ## first initialize self.all_representations
+        print('Getting all representations')
+        repr_dim = 0
+        if 'tactile' in self.representation_types: repr_dim += self.tactile_repr.size
+        if 'allegro' in self.representation_types:  repr_dim += ALLEGRO_EE_REPR_SIZE
+        if 'kinova' in self.representation_types: repr_dim += KINOVA_JOINT_NUM
+        if 'torque' in self.representation_types: repr_dim += ALLEGRO_JOINT_NUM # There are 16 joint values
+        if 'image' in self.representation_types: repr_dim += self.image_cfg.encoder.out_dim
+
+        length = 0
+        for i in range(len(self.data['length'])):
+            length += self.data['length'][i][1]
+        
+        ##WIll all the images be used?????
+        self.all_representations = np.zeros((
+            length, repr_dim
+        ))
+        ## Build the sampler and sample all the timestamps:
+        for demo_id, root in enumerate(self.roots):
+            sampler = AllegroSampler(root, [0], 'rgb', 1)
+            sampler.sample_data()
+            ##store the image and state information: 
+            for index in range(len(sampler.sampled_robot_states)):
+                ## states
+                representation = sampler.sampled_robot_states[index]
+                ## image and preproccessing
+                image = self._load_dataset_image(demo_id, sampler.sampled_rgb_frame_idxs[index])
+                image = self.image_encoder(image.unsqueeze(dim=0)) # Add a dimension to the first axis so that it could be considered as a batch
+                image = image.detach().cpu().numpy().squeeze()
+                representation += image
+                self.all_representations[index,:] = representation[:]
+                
         self.state_id = 0 # Increase it with each get_action
 
         self.nn_k = nn_k
@@ -90,12 +126,10 @@ class VINN(Deployer):
             closest_representations = [],
             neighbor_ids = [],
             images = [], 
-            tactile_values = []
         )
-
     
     # def _init_encoder_info(self, device, out_dir, encoder_type='tactile'): # encoder_type: either image or tactile
-    def init_encoder_info(self, device, out_dir):
+    def _init_encoder_info(self, device, out_dir):
         # if encoder_type == 'tactile' and  out_dir is None:
         #     encoder = alexnet(pretrained=True, out_dim=512, remove_last_layer=True)
         #     cfg = OmegaConf.create({'encoder':{'out_dim':512}, 'tactile_image_size':224})
@@ -110,7 +144,7 @@ class VINN(Deployer):
         #     encoder = load_model(cfg, device, model_path)
 
         cfg = OmegaConf.load(os.path.join(out_dir, '.hydra/config.yaml'))
-        model_path = os.path.join(out_dir, 'models/byol_encoder_best.pt')
+        model_path = os.path.join(out_dir, 'saved_models/byol_encoder_best.pt')
         encoder = load_model(cfg, device, model_path)
         encoder.eval() 
         
@@ -139,15 +173,16 @@ class VINN(Deployer):
         img = self.image_transform(dset_img)
         return torch.FloatTensor(img) 
     
+
+
+
     # tactile_values: (N,16,3) - N: Number of sensors
     # robot_states: { allegro: allegro_tip_positions: 12 - 3*4, End effector cartesian position for each finger tip
     #                 kinova: kinova_states : (3,) - Cartesian position of the arm end effector}
-    def _get_one_representation(self, image, tactile_values, robot_states):
+    def _get_one_representation(self, image, robot_states):
         for i,repr_type in enumerate(self.representation_types):
             if repr_type == 'allegro' or repr_type == 'kinova' or repr_type == 'torque':
                 new_repr = robot_states[repr_type] # These could be received directly from the robot states
-            elif repr_type == 'tactile':
-                new_repr = self.tactile_repr.get(tactile_values)
             elif repr_type == 'image':
                 new_repr = self.image_encoder(image.unsqueeze(dim=0)) # Add a dimension to the first axis so that it could be considered as a batch
                 new_repr = new_repr.detach().cpu().numpy().squeeze()
@@ -188,13 +223,16 @@ class VINN(Deployer):
 
             representation = self._get_one_representation(
                 repr_data['image'],
-                repr_data['tactile_value'], 
                 repr_data['robot_states'] 
             )
             self.all_representations[index, :] = representation[:]
             pbar.update(1)
 
         pbar.close()
+
+
+
+
 
     def save_deployment(self):
         with open(os.path.join(self.deployment_dump_dir, 'deployment_info.pkl'), 'wb') as f:
@@ -209,7 +247,8 @@ class VINN(Deployer):
         # else:
         #     action = self._get_knn_action(tactile_values, recv_robot_state, visualize)
         #Dont actually use open loop 
-        action = self._get_knn_action(tactile_values, recv_robot_state, visualize)
+        # action = self._get_knn_action(tactile_values, recv_robot_state, visualize)
+        action = self._get_knn_action(recv_robot_state, visualize)
         
         return  action
     
@@ -245,7 +284,7 @@ class VINN(Deployer):
     
     # tactile_values.shape: (16,15,3)
     # robot_state: {allegro: allegro_joint_state (16,), kinova: kinova_cart_state (3,)}
-    def _get_knn_action(self, curr_tactile_values, recv_robot_state, visualize=False):
+    def _get_knn_action(self, recv_robot_state, visualize=False):
         # Get the current state of the robot
         allegro_joint_state = recv_robot_state['allegro']
         fingertip_positions = self.kdl_solver.get_fingertip_coords(allegro_joint_state) # - fingertip position.shape: (12)
@@ -263,7 +302,6 @@ class VINN(Deployer):
         # Get the representation with the given tactile value
         curr_representation = self._get_one_representation(
             image,
-            curr_tactile_values, 
             curr_robot_state
         )
 
@@ -272,36 +310,46 @@ class VINN(Deployer):
         _, nn_idxs, nn_separate_dists = self.knn.get_k_nearest_neighbors(curr_representation, k=self.nn_k)
         closest_representation = self.all_representations[nn_idxs[0]]
         self.deployment_info['images'].append(image)
-        self.deployment_info['tactile_values'].append(curr_tactile_values)
+        # self.deployment_info['tactile_values'].append(curr_tactile_values)
         self.deployment_info['neighbor_ids'].append(nn_idxs[0])
         self.deployment_info['closest_representations'].append(closest_representation)
 
         # Choose the action with the buffer 
         id_of_nn = self.buffer.choose(nn_idxs)
         nn_id = nn_idxs[id_of_nn]
-        if nn_id+1 >= len(self.data['allegro_actions']['indices']): # If the chosen action is the action after the last action
+
+        self.all_representations
+        # if nn_id+1 >= len(self.data['allegro_actions']['indices']): # If the chosen action is the action after the last action
+        if nn_id+1 >= len(self.all_representations):
             nn_idxs = np.delete(nn_idxs, id_of_nn)
             id_of_nn = self.buffer.choose(nn_idxs)
             nn_id = nn_idxs[id_of_nn]
 
-        demo_id, action_id = self.data['allegro_actions']['indices'][nn_id+1]  # Get the next commanded action (commanded actions are saved in that timestamp)
-        nn_allegro_action = self.data['allegro_actions']['values'][demo_id][action_id]
 
-        demo_id, allegro_state_id = self.data['allegro_joint_states']['indices'][nn_id+1] 
-        nn_allegro_state = self.data['allegro_joint_states']['values'][demo_id][allegro_state_id]
-        nn_allegro_action[-4:] = nn_allegro_state[-4:] # Set the thumb to the state rather than the action since we fix the thumb in the demonstrations
+
+        # demo_id, action_id = self.data['allegro_actions']['indices'][nn_id+1]  # Get the next commanded action (commanded actions are saved in that timestamp)
+        # nn_allegro_action = self.data['allegro_actions']['values'][demo_id][action_id]
+
+        # demo_id, allegro_state_id = self.data['allegro_joint_states']['indices'][nn_id+1] 
+        # nn_allegro_state = self.data['allegro_joint_states']['values'][demo_id][allegro_state_id]
+        # nn_allegro_action[-4:] = nn_allegro_state[-4:] # Set the thumb to the state rather than the action since we fix the thumb in the demonstrations
+        # nn_action = dict(
+        #     allegro = nn_allegro_action
+        # )
+        
+        # _, kinova_id = self.data['kinova']['indices'][nn_id+1] # Get the next kinova state (which is for kinova robot the same as the next commanded action)
+        # nn_kinova_action = self.data['kinova']['values'][demo_id][kinova_id]
+        # nn_action['kinova'] = nn_kinova_action
+
+        nn_allegro_action = self.all_representations[nn_id+1][0:ALLEGRO_EE_REPR_SIZE]
         nn_action = dict(
             allegro = nn_allegro_action
         )
-        
-        _, kinova_id = self.data['kinova']['indices'][nn_id+1] # Get the next kinova state (which is for kinova robot the same as the next commanded action)
-        nn_kinova_action = self.data['kinova']['values'][demo_id][kinova_id]
-        nn_action['kinova'] = nn_kinova_action
 
         # Visualize if given 
         if visualize: 
             self._visualize_state(
-                curr_tactile_values, # We do want to plot all the tactile values - not only the ones we want  
+                # curr_tactile_values, # We do want to plot all the tactile values - not only the ones we want  
                 fingertip_positions,
                 kinova_cart_state[:3],
                 id_of_nn,

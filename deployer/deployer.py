@@ -1,10 +1,12 @@
 import os 
 import torch
+import cv2
 
 from abc import ABC, abstractmethod
 from PIL import Image as im
 
 from utils import *
+from holobot.utils.network import ZMQCameraSubscriber
 
 # Base class for all deployment modules
 class Deployer(ABC):
