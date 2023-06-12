@@ -93,7 +93,7 @@ def load_model(cfg, device, model_path, bc_model_type=None):
     elif 'byol' in cfg.learner_type: # load the encoder
         model = hydra.utils.instantiate(cfg.encoder)  
 
-    state_dict = torch.load(model_path) # All the parameters by default gets installed to cuda 0
+    state_dict = torch.load(model_path, map_location=device) # All the parameters by default gets installed to cuda 0
     
     # Modify the state dict accordingly - this is needed when multi GPU saving was done
     new_state_dict = modify_multi_gpu_state_dict(state_dict)

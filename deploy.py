@@ -16,7 +16,7 @@ class Deploy:
         }
         self.deploy_api = DeployAPI(
             # host_address = '172.24.71.240',
-            host_address = '172.24.71.200',
+            host_address = '172.24.71.211',
             required_data = required_data
         )
         self.cfg = cfg
@@ -26,6 +26,7 @@ class Deploy:
 
     def solve(self):
         sys.stdin = open(0) # To get inputs while spawning multiple processes
+
 
         while True:
             
@@ -40,6 +41,7 @@ class Deploy:
                 # Get the robot state and the tactile info
                 robot_state = self.deploy_api.get_robot_state() 
                 # sensor_state = self.deploy_api.get_sensor_state()
+                print("------------------------------------------------------------robot state get!!")
 
                 allegro_joint_pos = robot_state['allegro']['position']
                 allegro_joint_torque = robot_state['allegro']['effort']
@@ -48,24 +50,28 @@ class Deploy:
                     allegro = allegro_joint_pos,
                     torque = allegro_joint_torque
                 )
-                kinova_state = robot_state['kinova']
-                send_robot_state['kinova'] = kinova_state
+                # kinova_state = robot_state['kinova']
+                # send_robot_state['kinova'] = kinova_state
 
                 pred_action = self.module.get_action(
                     # tactile_info,
+                    self.device,
                     send_robot_state,
                     visualize=self.cfg['visualize']
                 )
                 if not self.cfg['loop']:
                     register = input('\nPress a key to perform the action...')
 
+
                 action_dict = dict() 
                 action_dict['allegro'] = pred_action['allegro'] # Should be a numpy array
-                action_dict['kinova'] = pred_action['kinova']
+                print(pred_action['allegro'].shape)
                 self.deploy_api.send_robot_action(action_dict)
 
                 if self.cfg['loop']: 
                     self.frequency_timer.end_loop()
+
+                print("------------------------------------------------------------robot action sent!!")
 
             except KeyboardInterrupt:
                 self.module.save_deployment() # This is supposed to save all the representaitons and run things 

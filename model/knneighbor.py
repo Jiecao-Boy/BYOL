@@ -13,14 +13,14 @@ class ScaledKNearestNeighbors(object):
         output_values,
         repr_types,
         repr_importance,
-        tactile_repr_size=64,
+        # tactile_repr_size=64,
         image_repr_size = 512
     ):
         self.input_values = input_values 
         self.output_values = output_values 
         self.repr_types = self._preprocess_reprs(repr_types)
         self.repr_importance = repr_importance
-        self.tactile_repr_size = tactile_repr_size
+        # self.tactile_repr_size = tactile_repr_size
         self.image_repr_size = image_repr_size
         self._get_index_values() # Will set the beginning and ending indices for each repr type
 
@@ -44,9 +44,9 @@ class ScaledKNearestNeighbors(object):
             if repr_type == 'image':
                 self.index_values['image'] = [last_index, last_index+self.image_repr_size] # We are using
                 last_index += self.image_repr_size
-            elif repr_type == 'tactile':
-                self.index_values['tactile'] = [last_index, last_index+self.tactile_repr_size]
-                last_index += self.tactile_repr_size
+            # elif repr_type == 'tactile':
+            #     self.index_values['tactile'] = [last_index, last_index+self.tactile_repr_size]
+            #     last_index += self.tactile_repr_size
             elif repr_type == 'kinova':
                 self.index_values['kinova'] = [last_index, last_index+KINOVA_JOINT_NUM]
                 last_index += KINOVA_JOINT_NUM
@@ -95,7 +95,7 @@ class ScaledKNearestNeighbors(object):
     def get_k_nearest_neighbors(self, datapoint, k):
         if k == 1:
             return self.get_nearest_neighbor(datapoint)
-
+        
         assert datapoint.shape == self.input_values[0].shape
 
         sorted_idxs, sorted_separate_l2_dists = self.get_sorted_idxs(datapoint)

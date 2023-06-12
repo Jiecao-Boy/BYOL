@@ -11,11 +11,12 @@ from holobot.utils.network import ZMQCameraSubscriber
 # Base class for all deployment modules
 class Deployer(ABC):
     def set_up_env(self):
-        os.environ["MASTER_ADDR"] = "localhost"
-        os.environ["MASTER_PORT"] = "29505"
+        # os.environ["MASTER_ADDR"] = "localhost"
+        # os.environ["MASTER_PORT"] = "29505"
 
-        torch.distributed.init_process_group(backend='gloo', rank=0, world_size=1)
-        torch.cuda.set_device(0)
+        # torch.distributed.init_process_group(backend='gloo', rank=0, world_size=1)
+        # torch.cuda.set_device(0)
+        pass
 
     @abstractmethod
     def get_action(self, tactile_values, recv_robot_state, visualize=False):
@@ -25,7 +26,7 @@ class Deployer(ABC):
     def save_deployment(self):
         pass 
 
-    def _get_curr_image(self, host='172.24.71.200', port=10005):
+    def _get_curr_image(self, host='172.24.71.211', port=10005):
         image_subscriber = ZMQCameraSubscriber(
             host = host,
             port = port + self.view_num,
@@ -36,3 +37,4 @@ class Deployer(ABC):
         image = im.fromarray(image)
         img = self.image_transform(image)
         return torch.FloatTensor(img)
+    
